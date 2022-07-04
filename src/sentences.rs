@@ -11,8 +11,8 @@ pub struct Sentence {
 
 impl Sentence {
     /// Create new sentence
-    pub fn new(inner: String) -> Self {
-        Sentence { inner }
+    pub fn new(inner: &str) -> Self {
+        Sentence { inner: inner.to_string() }
     }
 
     /// Put's a string into a slot in the Sentence
@@ -45,7 +45,7 @@ pub fn load_sentences_from_file(file_buf: &mut BufReader<File>) -> Vec<Sentence>
     let mut sentences = Vec::new();
     for line in file_buf.lines() {
         let line = line.unwrap();
-        let sentence = Sentence::new(line);
+        let sentence = Sentence::new(&line);
         sentences.push(sentence);
     }
     sentences
